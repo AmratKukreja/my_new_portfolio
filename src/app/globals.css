@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 247, 249, 252;
+  --background-end-rgb: 255, 255, 255;
+  --primary-color: #1A365D;
+  --secondary-color: #2A9D8F;
+  --accent-color: #F4A261;
+  --text-color: #4A5568;
+  --light-gray: #E2E8F0;
+  --card-bg: #ffffff;
+  --border-color: #E2E8F0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 2, 6, 23;
+    --primary-color: #ffffff;
+    --secondary-color: #34d399;
+    --accent-color: #fbbf24;
+    --text-color: #f1f5f9;
+    --light-gray: #475569;
+    --card-bg: #334155;
+    --border-color: #64748b;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.code {
+  font-family: 'Fira Code', monospace;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.section-padding {
+  @apply py-16 md:py-16;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply bg-[#2A9D8F] text-white px-6 py-3 rounded transition-all hover:bg-[#238b7e] focus:outline-none focus:ring-2 focus:ring-[#2A9D8F] focus:ring-opacity-50;
+}
+
+.btn-secondary {
+  @apply border-2 px-6 py-3 rounded transition-all focus:outline-none focus:ring-2 focus:ring-opacity-50;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-tertiary {
+  @apply px-4 py-2 transition-all hover:underline focus:outline-none;
+  color: var(--primary-color);
+}
+
+.card {
+  @apply rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden;
+  background-color: var(--card-bg);
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold mb-8;
+  color: var(--primary-color);
+}
+
+.section-subtitle {
+  @apply text-xl md:text-2xl font-semibold mb-4;
+  color: var(--secondary-color);
+}
+
+.timeline-item {
+  @apply relative pl-8 pb-8 border-l-2 last:border-l-0 last:pb-0;
+  border-color: var(--border-color);
+}
+
+.timeline-dot {
+  @apply absolute left-[-9px] top-0 w-4 h-4 rounded-full;
+  background-color: var(--secondary-color);
+}
+
+.skill-bar {
+  @apply h-2 rounded-full overflow-hidden;
+  background-color: var(--light-gray);
+}
+
+.skill-progress {
+  @apply h-full rounded-full;
+  background-color: var(--secondary-color);
+}
+
+.nav-link {
+  @apply transition-colors;
+  color: var(--text-color);
+}
+
+.nav-link:hover {
+  color: var(--secondary-color);
+}
+
+.nav-link.active {
+  @apply font-medium;
+  color: var(--secondary-color);
+}
+
+.project-card {
+  @apply card p-0 transition-all duration-300 hover:translate-y-[-5px];
+}
+
+.project-image {
+  @apply w-full h-48 object-cover;
+}
+
+.project-content {
+  @apply p-6;
+}
+
+.project-title {
+  @apply text-xl font-semibold mb-2;
+  color: var(--primary-color);
+}
+
+.project-description {
+  @apply mb-4;
+  color: var(--text-color);
+}
+
+.project-tech {
+  @apply flex flex-wrap gap-2;
+}
+
+.tech-tag {
+  @apply text-xs px-2 py-1 rounded;
+  background-color: var(--light-gray);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.recommendation-card {
+  @apply card p-6;
+}
+
+.recommendation-text {
+  @apply italic mb-4;
+  color: var(--text-color);
+}
+
+.recommendation-author {
+  @apply font-semibold;
+  color: var(--primary-color);
+}
+
+.recommendation-position {
+  @apply text-sm;
+  color: var(--text-color);
+}
+
+.contact-info-item {
+  @apply flex items-center gap-3 mb-4;
+}
+
+.contact-icon {
+  @apply text-xl;
+  color: var(--secondary-color);
+}
+
+.social-icon {
+  @apply text-2xl transition-colors;
+  color: var(--text-color);
+}
+
+.social-icon:hover {
+  color: var(--secondary-color);
+}
+
+.footer {
+  @apply bg-[#1A365D] text-white py-8;
+}
+
+.footer-link {
+  @apply text-white opacity-80 hover:opacity-100 transition-opacity;
+}
+
+/* Utility classes for dark mode */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-muted {
+  color: var(--text-color);
+}
+
+.bg-card {
+  background-color: var(--card-bg);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+/* Enhanced dark mode text visibility */
+@media (prefers-color-scheme: dark) {
+  .section-title {
+    color: #ffffff !important;
+  }
+  
+  .section-subtitle {
+    color: var(--secondary-color) !important;
+  }
+  
+  .project-title {
+    color: #ffffff !important;
+  }
+  
+  .project-description {
+    color: #f1f5f9 !important;
+  }
+  
+  .recommendation-author {
+    color: #ffffff !important;
+  }
+  
+  .recommendation-text {
+    color: #f1f5f9 !important;
+  }
+  
+  .recommendation-position {
+    color: #cbd5e1 !important;
+  }
+  
+  .tech-tag {
+    background-color: #475569 !important;
+    color: #ffffff !important;
+  }
+  
+  /* Ensure all text in dark sections is visible */
+  .bg-card h1, .bg-card h2, .bg-card h3, .bg-card h4, .bg-card h5, .bg-card h6 {
+    color: #ffffff !important;
+  }
+  
+  .bg-card p, .bg-card span, .bg-card div {
+    color: #f1f5f9 !important;
+  }
+  
+  /* Timeline and experience sections */
+  .timeline-item h3, .timeline-item h4 {
+    color: #ffffff !important;
+  }
+  
+  .timeline-item p, .timeline-item span {
+    color: #f1f5f9 !important;
+  }
+}
