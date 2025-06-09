@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaCode, FaServer, FaReact, FaBrain, FaDatabase, FaDocker } from 'react-icons/fa';
-import { SiTensorflow, SiPytorch, SiJavascript, SiTypescript, SiNextdotjs, SiGraphql } from 'react-icons/si';
+import { SiTensorflow, SiPytorch, SiJavascript, SiNextdotjs, SiGraphql } from 'react-icons/si';
 
 const skills = [
   {

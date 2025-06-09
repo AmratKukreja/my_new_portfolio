@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const recommendations = [
   {
@@ -49,7 +48,7 @@ export default function Recommendations() {
               className="recommendation-card"
             >
               <div className="flex flex-col h-full">
-                <div className="mb-4 text-4xl text-[#2A9D8F] opacity-20">"</div>
+                <div className="mb-4 text-4xl text-[#2A9D8F] opacity-20">&ldquo;</div>
                 <p className="recommendation-text flex-grow">{recommendation.text}</p>
                 <div className="mt-6 pt-4 border-t border-[#E2E8F0]">
                   <p className="recommendation-author">{recommendation.author}</p>

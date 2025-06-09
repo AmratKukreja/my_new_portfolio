@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaGlobe, FaBrain, FaCube, FaMobile, FaCode, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // Project type definition
 interface Project {
@@ -273,13 +273,13 @@ export default function Projects() {
     return filteredProjects.slice(startIndex, startIndex + projectsPerSlide);
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
+  }, [totalSlides]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
+  }, [totalSlides]);
 
   // Auto-play carousel every 3 seconds
   useEffect(() => {
@@ -290,7 +290,7 @@ export default function Projects() {
     }, 3000); // 3 seconds
 
     return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [totalSlides, isHovered, currentSlide]);
+  }, [totalSlides, isHovered, currentSlide, nextSlide]);
 
   return (
     <section id="projects" className="section-padding bg-gray-50">
