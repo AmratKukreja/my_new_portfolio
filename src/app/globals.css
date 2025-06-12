@@ -53,10 +53,17 @@ h1, h2, h3, h4, h5, h6 {
   .text-balance {
     text-wrap: balance;
   }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 .section-padding {
-  @apply py-16 md:py-16;
+  @apply py-8 sm:py-12 md:py-16;
 }
 
 .container-custom {
@@ -64,11 +71,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  @apply bg-[#2A9D8F] text-white px-6 py-3 rounded transition-all hover:bg-[#238b7e] focus:outline-none focus:ring-2 focus:ring-[#2A9D8F] focus:ring-opacity-50;
+  @apply bg-[#2A9D8F] text-white px-4 py-2 sm:px-6 sm:py-3 rounded transition-all hover:bg-[#238b7e] focus:outline-none focus:ring-2 focus:ring-[#2A9D8F] focus:ring-opacity-50 text-sm sm:text-base font-medium;
 }
 
 .btn-secondary {
-  @apply border-2 px-6 py-3 rounded transition-all focus:outline-none focus:ring-2 focus:ring-opacity-50;
+  @apply border-2 px-4 py-2 sm:px-6 sm:py-3 rounded transition-all focus:outline-none focus:ring-2 focus:ring-opacity-50 text-sm sm:text-base font-medium;
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
@@ -89,12 +96,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl font-bold mb-8;
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8;
   color: var(--primary-color);
 }
 
 .section-subtitle {
-  @apply text-xl md:text-2xl font-semibold mb-4;
+  @apply text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4;
   color: var(--secondary-color);
 }
 

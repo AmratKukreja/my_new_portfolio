@@ -20,38 +20,38 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="text-center md:text-left"
           >
-            <h2 className="text-xl md:text-2xl font-medium mb-2 text-secondary">Hello, I&apos;m</h2>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-primary">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-medium mb-2 text-secondary">Hello, I&apos;m</h2>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-primary">
               Amrat Kukreja
             </h1>
-            <h3 className="text-xl md:text-2xl mb-6 text-muted">
+            <h3 className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-muted">
               Versatile Software Developer
             </h3>
-            <p className="mb-8 max-w-lg mx-auto md:mx-0 text-muted">
+            <p className="mb-6 sm:mb-8 max-w-lg mx-auto md:mx-0 text-muted text-sm sm:text-base leading-relaxed">
               Motivated Computer Science student with an entrepreneurial mindset,
               experienced in Backend and Frontend Development. Skilled in AI, Deep
               Learning, and Neural Networks, with hands-on experience integrating AI with
               web applications and working with standalone models.
             </p>
             
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-primary text-center">
                 Download Resume
               </a>
-              <a href="#contact" className="btn-secondary">Contact Me</a>
+              <a href="#contact" className="btn-secondary text-center">Contact Me</a>
             </div>
             
-            <div className="flex mt-8 gap-6 justify-center md:justify-start">
-              <a href="https://github.com/AmratKukreja" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <div className="flex mt-6 sm:mt-8 gap-4 sm:gap-6 justify-center md:justify-start">
+              <a href="https://github.com/AmratKukreja" target="_blank" rel="noopener noreferrer" className="social-icon text-xl sm:text-2xl">
                 <FaGithub />
               </a>
-              <a href="https://linkedin.com/in/amrat-kukreja" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://linkedin.com/in/amrat-kukreja" target="_blank" rel="noopener noreferrer" className="social-icon text-xl sm:text-2xl">
                 <FaLinkedin />
               </a>
-              <a href="mailto:amratkukreja@gmail.com" className="social-icon">
+              <a href="mailto:amratkukreja@gmail.com" className="social-icon text-xl sm:text-2xl">
                 <FaEnvelope />
               </a>
-              <a href="tel:+923123205424" className="social-icon">
+              <a href="tel:+923123205424" className="social-icon text-xl sm:text-2xl">
                 <FaPhone />
               </a>
             </div>
@@ -63,12 +63,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] rounded-full mx-auto flex items-center justify-center">
-              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full flex items-center justify-center text-center p-4 bg-card">
+            <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] rounded-full mx-auto flex items-center justify-center">
+              <div className="w-44 h-44 sm:w-60 sm:h-60 md:w-76 md:h-76 rounded-full flex items-center justify-center text-center p-3 sm:p-4 bg-card">
                 <div>
-                  <div className="text-6xl mb-2 text-primary font-bold">AK</div>
-                  <div className="text-sm text-muted">Full Stack Developer</div>
-                  <div className="text-sm text-muted">AI Enthusiast</div>
+                  <div className="text-4xl sm:text-5xl md:text-6xl mb-1 sm:mb-2 text-primary font-bold">AK</div>
+                  <div className="text-xs sm:text-sm text-muted">Full Stack Developer</div>
+                  <div className="text-xs sm:text-sm text-muted">AI Enthusiast</div>
                 </div>
               </div>
             </div>

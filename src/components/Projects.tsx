@@ -265,7 +265,7 @@ export default function Projects() {
   };
 
   const filteredProjects = getFilteredProjects();
-  const projectsPerSlide = 3;
+  const projectsPerSlide = 1; // Show 1 project per slide on mobile for better UX
   const totalSlides = Math.ceil(filteredProjects.length / projectsPerSlide);
   
   const getCurrentSlideProjects = () => {
@@ -303,17 +303,17 @@ export default function Projects() {
           className="text-center mb-12"
         >
           <h2 className="section-title">Featured Projects</h2>
-          <p className="text-muted max-w-2xl mx-auto">
-            A showcase of my technical projects spanning AI/ML, web development, mobile apps, Web3/blockchain, and innovative applications,
-            demonstrating my versatility and problem-solving abilities.
+          <p className="text-muted max-w-2xl mx-auto text-sm sm:text-base px-4 sm:px-0">
+            <span className="hidden sm:inline">A showcase of my technical projects spanning AI/ML, web development, mobile apps, Web3/blockchain, and innovative applications, demonstrating my versatility and problem-solving abilities.</span>
+            <span className="sm:hidden">Showcasing my technical projects across AI/ML, web development, mobile apps, and blockchain technologies.</span>
           </p>
         </motion.div>
 
         {/* Category Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
           <button
             onClick={() => handleCategoryChange('all')}
-            className={`px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`px-3 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base ${
               activeCategory === 'all'
                 ? 'bg-[#2A9D8F] text-white'
                 : 'bg-card text-muted hover:bg-[#2A9D8F] hover:text-white'
@@ -325,14 +325,15 @@ export default function Projects() {
             <button
               key={key}
               onClick={() => handleCategoryChange(key)}
-              className={`px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 ${
+              className={`px-3 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-all flex items-center gap-1 sm:gap-2 text-sm sm:text-base ${
                 activeCategory === key
                   ? 'bg-[#2A9D8F] text-white'
                   : 'bg-card text-muted hover:bg-[#2A9D8F] hover:text-white'
               }`}
             >
-              {category.icon}
-              {category.name}
+              <span className="text-sm sm:text-base">{category.icon}</span>
+              <span className="hidden sm:inline">{category.name}</span>
+              <span className="sm:hidden">{category.name.split(' ')[0]}</span>
             </button>
           ))}
         </div>
@@ -352,7 +353,7 @@ export default function Projects() {
           ) : (
             <>
               {/* Project Cards */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+              <div className="flex justify-center mb-6 sm:mb-8">
                 {getCurrentSlideProjects().map((project, index) => (
                   <motion.div
                     key={`${activeCategory}-${currentSlide}-${index}`}
@@ -360,28 +361,33 @@ export default function Projects() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="project-card"
+                    className="project-card w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
                   >
-                    <div className="relative h-48 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] flex items-center justify-center">
-                      <div className="text-white text-4xl font-bold text-center px-4">
+                    <div className="relative h-32 sm:h-40 md:h-48 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] flex items-center justify-center">
+                      <div className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center px-4">
                         {project.displayText || project.title.split(' ')[0]}
                       </div>
                     </div>
-                    <div className="project-content">
-                      <h3 className="project-title">{project.title}</h3>
-                      <p className="project-description">{project.description}</p>
-                      <div className="project-tech mb-4">
-                        {project.technologies.map((tech, techIndex) => (
-                          <span key={techIndex} className="tech-tag">{tech}</span>
+                    <div className="project-content p-4 sm:p-6">
+                      <h3 className="project-title text-lg sm:text-xl mb-2">{project.title}</h3>
+                      <p className="project-description text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
+                        {project.description}
+                      </p>
+                      <div className="project-tech mb-3 sm:mb-4">
+                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                          <span key={techIndex} className="tech-tag text-xs">{tech}</span>
                         ))}
+                        {project.technologies.length > 4 && (
+                          <span className="tech-tag text-xs">+{project.technologies.length - 4} more</span>
+                        )}
                       </div>
-                      <div className="flex gap-4">
+                      <div className="flex gap-3 sm:gap-4">
                         {project.github && (
                           <a 
                             href={project.github} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="flex items-center text-sm text-primary hover:text-secondary transition-colors"
+                            className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
                           >
                             <FaGithub className="mr-1" /> GitHub
                           </a>
@@ -391,7 +397,7 @@ export default function Projects() {
                             href={project.live} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="flex items-center text-sm text-primary hover:text-secondary transition-colors"
+                            className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
                           >
                             <FaExternalLinkAlt className="mr-1" /> Live Demo
                           </a>
@@ -404,21 +410,21 @@ export default function Projects() {
 
               {/* Navigation Controls */}
               {totalSlides > 1 && (
-                <div className="flex justify-center items-center gap-4">
+                <div className="flex justify-center items-center gap-3 sm:gap-4">
                   <button
                     onClick={prevSlide}
-                    className="p-3 rounded-full bg-[#2A9D8F] text-white hover:bg-[#1A7A6D] transition-colors"
+                    className="p-2 sm:p-3 rounded-full bg-[#2A9D8F] text-white hover:bg-[#1A7A6D] transition-colors text-sm sm:text-base"
                     aria-label="Previous projects"
                   >
                     <FaChevronLeft />
                   </button>
                   
-                  <div className="flex gap-2">
+                  <div className="flex gap-1 sm:gap-2 max-w-[200px] overflow-x-auto">
                     {Array.from({ length: totalSlides }, (_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-colors ${
+                        className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors flex-shrink-0 ${
                           index === currentSlide
                             ? 'bg-[#2A9D8F]'
                             : 'bg-gray-300 hover:bg-gray-400'
@@ -430,7 +436,7 @@ export default function Projects() {
 
                   <button
                     onClick={nextSlide}
-                    className="p-3 rounded-full bg-[#2A9D8F] text-white hover:bg-[#1A7A6D] transition-colors"
+                    className="p-2 sm:p-3 rounded-full bg-[#2A9D8F] text-white hover:bg-[#1A7A6D] transition-colors text-sm sm:text-base"
                     aria-label="Next projects"
                   >
                     <FaChevronRight />
