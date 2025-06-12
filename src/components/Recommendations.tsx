@@ -31,7 +31,7 @@ export default function Recommendations() {
           className="text-center mb-12"
         >
           <h2 className="section-title">Recommendations</h2>
-          <p className="text-[#4A5568] max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Professional endorsements from professors and mentors who have witnessed my academic journey,
             technical abilities, and professional growth.
           </p>
@@ -50,10 +50,10 @@ export default function Recommendations() {
               <div className="flex flex-col h-full">
                 <div className="mb-4 text-4xl text-[#2A9D8F] opacity-20">&ldquo;</div>
                 <p className="recommendation-text flex-grow">{recommendation.text}</p>
-                <div className="mt-6 pt-4 border-t border-[#E2E8F0]">
+                <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
                   <p className="recommendation-author">{recommendation.author}</p>
                   <p className="recommendation-position">{recommendation.position}</p>
-                  <p className="text-sm text-[#4A5568] mt-1">{recommendation.contact}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{recommendation.contact}</p>
                   {recommendation.link && (
                     <a 
                       href={recommendation.link} 

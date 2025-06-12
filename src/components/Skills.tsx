@@ -74,7 +74,7 @@ export default function Skills() {
           className="text-center mb-12"
         >
           <h2 className="section-title">Technical Skills</h2>
-          <p className="text-[#4A5568] max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             A comprehensive overview of my technical expertise and proficiency levels across various domains,
             including programming languages, web development, artificial intelligence, and other technologies.
           </p>
@@ -100,9 +100,9 @@ export default function Skills() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="text-[#2A9D8F]">{skill.icon}</span>
-                        <span className="font-medium">{skill.name}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{skill.name}</span>
                       </div>
-                      <span className="text-sm text-[#4A5568]">{skill.level}%</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
                       <motion.div

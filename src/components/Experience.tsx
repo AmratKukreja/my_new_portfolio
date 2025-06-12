@@ -58,7 +58,7 @@ export default function Experience() {
           className="text-center mb-12"
         >
           <h2 className="section-title">Work Experience</h2>
-          <p className="text-[#4A5568] max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             My professional journey includes roles in software engineering, web development, 
             event organization, and freelancing, showcasing my versatility and growth in the tech industry.
           </p>
@@ -66,7 +66,7 @@ export default function Experience() {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#E2E8F0] transform md:translate-x-[-0.5px]"></div>
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-600 transform md:translate-x-[-0.5px]"></div>
 
           <div className="space-y-8">
             {experiences.map((exp, index) => (
@@ -84,7 +84,7 @@ export default function Experience() {
                 <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 rounded-full bg-[#2A9D8F] transform md:translate-x-[-8px] z-10"></div>
                 
                 {/* Date for mobile */}
-                <div className="md:hidden flex items-center text-[#4A5568] mb-2 pl-6">
+                <div className="md:hidden flex items-center text-gray-600 dark:text-gray-300 mb-2 pl-6">
                   <FaCalendarAlt className="mr-2 text-[#2A9D8F]" />
                   <span>{exp.period}</span>
                 </div>
@@ -94,22 +94,22 @@ export default function Experience() {
                   index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                 }`}>
                   <div className="card p-6 h-full">
-                    <h3 className="text-xl font-semibold text-[#1A365D]">{exp.title}</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
                     <h4 className="text-lg font-medium text-[#2A9D8F] mb-2">{exp.company}</h4>
                     
                     {/* Date for desktop */}
-                    <div className="hidden md:flex items-center text-[#4A5568] mb-2">
+                    <div className="hidden md:flex items-center text-gray-600 dark:text-gray-300 mb-2">
                       <FaCalendarAlt className="mr-2 text-[#2A9D8F]" />
                       <span>{exp.period}</span>
                     </div>
                     
-                    <div className="flex items-center text-[#4A5568] mb-4">
+                    <div className="flex items-center text-gray-600 dark:text-gray-300 mb-4">
                       <FaMapMarkerAlt className="mr-2 text-[#2A9D8F]" />
                       <span>{exp.location}</span>
                     </div>
                     
-                    <p className="text-[#4A5568] mb-2">{exp.description}</p>
-                    <p className="text-sm text-[#4A5568] italic">{exp.address}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-2">{exp.description}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 italic">{exp.address}</p>
                   </div>
                 </div>
                 

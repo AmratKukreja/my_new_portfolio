@@ -52,7 +52,7 @@ export default function Education() {
           className="text-center mb-12"
         >
           <h2 className="section-title">Education & Certifications</h2>
-          <p className="text-[#4A5568] max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             My academic background and professional certifications that have shaped my knowledge and expertise in computer science and related technologies.
           </p>
         </motion.div>
@@ -73,14 +73,14 @@ export default function Education() {
                       <FaGraduationCap className="text-[#2A9D8F] text-xl" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold text-[#1A365D]">{edu.degree}</h4>
+                      <h4 className="text-xl font-semibold text-gray-900 dark:text-white">{edu.degree}</h4>
                       <h5 className="text-lg text-[#2A9D8F] mb-2">{edu.institution}</h5>
-                      <div className="flex items-center text-[#4A5568] mb-1">
+                      <div className="flex items-center text-gray-600 dark:text-gray-300 mb-1">
                         <FaCalendarAlt className="mr-2 text-sm" />
                         <span>{edu.period}</span>
                       </div>
-                      <p className="text-[#4A5568] mb-1">{edu.grade}</p>
-                      <p className="text-[#4A5568] mb-2">{edu.location}</p>
+                      <p className="text-gray-600 dark:text-gray-300 mb-1">{edu.grade}</p>
+                      <p className="text-gray-600 dark:text-gray-300 mb-2">{edu.location}</p>
                       {edu.website && (
                         <a 
                           href={edu.website} 
@@ -112,9 +112,9 @@ export default function Education() {
                     <FaMedal className="text-[#F4A261]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#1A365D]">{cert.title}</h4>
-                    <p className="text-sm text-[#4A5568]">{cert.issuer}</p>
-                    <p className="text-xs text-[#4A5568]">{cert.date}</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">{cert.title}</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">{cert.issuer}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{cert.date}</p>
                   </div>
                 </div>
               ))}
@@ -126,8 +126,8 @@ export default function Education() {
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between mb-1">
-                      <span className="font-medium text-[#1A365D]">Sindhi</span>
-                      <span className="text-sm text-[#4A5568]">Native or Bilingual Proficiency</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Sindhi</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">Native or Bilingual Proficiency</span>
                     </div>
                     <div className="skill-bar">
                       <motion.div
@@ -141,8 +141,8 @@ export default function Education() {
                   </div>
                   <div>
                     <div className="flex justify-between mb-1">
-                      <span className="font-medium text-[#1A365D]">Urdu</span>
-                      <span className="text-sm text-[#4A5568]">Professional Working Proficiency</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Urdu</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">Professional Working Proficiency</span>
                     </div>
                     <div className="skill-bar">
                       <motion.div
@@ -156,8 +156,8 @@ export default function Education() {
                   </div>
                   <div>
                     <div className="flex justify-between mb-1">
-                      <span className="font-medium text-[#1A365D]">English</span>
-                      <span className="text-sm text-[#4A5568]">Professional Working Proficiency</span>
+                      <span className="font-medium text-gray-900 dark:text-white">English</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">Professional Working Proficiency</span>
                     </div>
                     <div className="skill-bar">
                       <motion.div
