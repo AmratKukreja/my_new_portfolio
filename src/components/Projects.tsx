@@ -246,6 +246,7 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
 
   // Get all projects from all categories
   const getAllProjects = () => {
@@ -265,8 +266,27 @@ export default function Projects() {
   };
 
   const filteredProjects = getFilteredProjects();
-  const projectsPerSlide = 1; // Show 1 project per slide on mobile for better UX
+  
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Dynamic projects per slide based on screen size and category
+  const getProjectsPerSlide = () => {
+    const isMobile = windowWidth < 768;
+    if (isMobile) return 1; // Always 1 on mobile
+    return activeCategory === 'all' ? 3 : filteredProjects.length; // 3 for "all" carousel, all for specific categories (no carousel)
+  };
+  
+  const projectsPerSlide = getProjectsPerSlide();
   const totalSlides = Math.ceil(filteredProjects.length / projectsPerSlide);
+  const shouldShowCarousel = activeCategory === 'all' || windowWidth < 768;
   
   const getCurrentSlideProjects = () => {
     const startIndex = currentSlide * projectsPerSlide;
@@ -281,16 +301,16 @@ export default function Projects() {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   }, [totalSlides]);
 
-  // Auto-play carousel every 3 seconds
+  // Auto-play carousel every 3 seconds (only for "all" category or mobile)
   useEffect(() => {
-    if (totalSlides <= 1 || isHovered) return; // Don't auto-play if only one slide or user is hovering
+    if (!shouldShowCarousel || totalSlides <= 1 || isHovered) return; // Don't auto-play if not carousel mode, only one slide, or user is hovering
 
     const interval = setInterval(() => {
       nextSlide();
     }, 3000); // 3 seconds
 
     return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [totalSlides, isHovered, currentSlide, nextSlide]);
+  }, [shouldShowCarousel, totalSlides, isHovered, currentSlide, nextSlide]);
 
   return (
     <section id="projects" className="section-padding bg-gray-50">
@@ -353,63 +373,121 @@ export default function Projects() {
           ) : (
             <>
               {/* Project Cards */}
-              <div className="flex justify-center mb-6 sm:mb-8">
-                {getCurrentSlideProjects().map((project, index) => (
-                  <motion.div
-                    key={`${activeCategory}-${currentSlide}-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="project-card w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
-                  >
-                    <div className="relative h-32 sm:h-40 md:h-48 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] flex items-center justify-center">
-                      <div className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center px-4">
-                        {project.displayText || project.title.split(' ')[0]}
+              {shouldShowCarousel ? (
+                // Carousel Mode (Mobile or Desktop "All" category)
+                <div className="flex justify-center mb-6 sm:mb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl">
+                    {getCurrentSlideProjects().map((project, index) => (
+                      <motion.div
+                        key={`${activeCategory}-${currentSlide}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="project-card w-full max-w-sm sm:max-w-md md:max-w-none mx-auto"
+                      >
+                        <div className="relative h-32 sm:h-40 md:h-48 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] flex items-center justify-center">
+                          <div className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center px-4">
+                            {project.displayText || project.title.split(' ')[0]}
+                          </div>
+                        </div>
+                        <div className="project-content p-4 sm:p-6">
+                          <h3 className="project-title text-lg sm:text-xl mb-2">{project.title}</h3>
+                          <p className="project-description text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
+                            {project.description}
+                          </p>
+                          <div className="project-tech mb-3 sm:mb-4">
+                            {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                              <span key={techIndex} className="tech-tag text-xs">{tech}</span>
+                            ))}
+                            {project.technologies.length > 4 && (
+                              <span className="tech-tag text-xs">+{project.technologies.length - 4} more</span>
+                            )}
+                          </div>
+                          <div className="flex gap-3 sm:gap-4">
+                            {project.github && (
+                              <a 
+                                href={project.github} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
+                              >
+                                <FaGithub className="mr-1" /> GitHub
+                              </a>
+                            )}
+                            {project.live && (
+                              <a 
+                                href={project.live} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
+                              >
+                                <FaExternalLinkAlt className="mr-1" /> Live Demo
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                // Static Grid Mode (Desktop specific categories)
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6 sm:mb-8">
+                  {filteredProjects.map((project, index) => (
+                    <motion.div
+                      key={`${activeCategory}-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="project-card"
+                    >
+                      <div className="relative h-48 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] flex items-center justify-center">
+                        <div className="text-white text-4xl font-bold text-center px-4">
+                          {project.displayText || project.title.split(' ')[0]}
+                        </div>
                       </div>
-                    </div>
-                    <div className="project-content p-4 sm:p-6">
-                      <h3 className="project-title text-lg sm:text-xl mb-2">{project.title}</h3>
-                      <p className="project-description text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
-                        {project.description}
-                      </p>
-                      <div className="project-tech mb-3 sm:mb-4">
-                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                          <span key={techIndex} className="tech-tag text-xs">{tech}</span>
-                        ))}
-                        {project.technologies.length > 4 && (
-                          <span className="tech-tag text-xs">+{project.technologies.length - 4} more</span>
-                        )}
+                      <div className="project-content p-6">
+                        <h3 className="project-title text-xl mb-2">{project.title}</h3>
+                        <p className="project-description text-base mb-4">
+                          {project.description}
+                        </p>
+                        <div className="project-tech mb-4">
+                          {project.technologies.map((tech, techIndex) => (
+                            <span key={techIndex} className="tech-tag text-xs">{tech}</span>
+                          ))}
+                        </div>
+                        <div className="flex gap-4">
+                          {project.github && (
+                            <a 
+                              href={project.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex items-center text-sm text-primary hover:text-secondary transition-colors"
+                            >
+                              <FaGithub className="mr-1" /> GitHub
+                            </a>
+                          )}
+                          {project.live && (
+                            <a 
+                              href={project.live} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex items-center text-sm text-primary hover:text-secondary transition-colors"
+                            >
+                              <FaExternalLinkAlt className="mr-1" /> Live Demo
+                            </a>
+                          )}
+                        </div>
                       </div>
-                      <div className="flex gap-3 sm:gap-4">
-                        {project.github && (
-                          <a 
-                            href={project.github} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
-                          >
-                            <FaGithub className="mr-1" /> GitHub
-                          </a>
-                        )}
-                        {project.live && (
-                          <a 
-                            href={project.live} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
-                          >
-                            <FaExternalLinkAlt className="mr-1" /> Live Demo
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
               {/* Navigation Controls */}
-              {totalSlides > 1 && (
+              {shouldShowCarousel && totalSlides > 1 && (
                 <div className="flex justify-center items-center gap-3 sm:gap-4">
                   <button
                     onClick={prevSlide}
