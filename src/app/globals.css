@@ -39,6 +39,11 @@ body {
     )
     rgb(var(--background-start-rgb));
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -289,5 +294,22 @@ h1, h2, h3, h4, h5, h6 {
   
   .timeline-item p, .timeline-item span {
     color: #f1f5f9 !important;
+  }
+}
+
+/* Mobile specific optimizations */
+@media (max-width: 768px) {
+  .container-custom {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  section {
+    min-height: auto;
+  }
+  
+  #home {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
   }
 }
