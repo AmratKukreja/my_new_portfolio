@@ -379,19 +379,19 @@ export default function Projects() {
               <div className="flex justify-center mb-6 sm:mb-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl">
                   {getCurrentSlideProjects().map((project, index) => (
-                    <motion.div
+              <motion.div
                       key={`${activeCategory}-${currentSlide}-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="project-card w-full max-w-sm sm:max-w-md md:max-w-none mx-auto"
                     >
                       <div className="relative h-32 sm:h-40 md:h-48 bg-gradient-to-br from-[#1A365D] to-[#2A9D8F] flex items-center justify-center">
                         <div className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center px-4">
                           {project.displayText || project.title.split(' ')[0]}
                         </div>
-                      </div>
+                </div>
                       <div className="project-content p-4 sm:p-6">
                         <h3 className="project-title text-lg sm:text-xl mb-2">{project.title}</h3>
                         <p className="project-description text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
@@ -404,31 +404,31 @@ export default function Projects() {
                           {project.technologies.length > 4 && (
                             <span className="tech-tag text-xs">+{project.technologies.length - 4} more</span>
                           )}
-                        </div>
+                  </div>
                         <div className="flex gap-3 sm:gap-4">
-                          {project.github && (
-                            <a 
-                              href={project.github} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
+                    {project.github && (
+                      <a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
                               className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
-                            >
-                              <FaGithub className="mr-1" /> GitHub
-                            </a>
-                          )}
-                          {project.live && (
-                            <a 
-                              href={project.live} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
+                      >
+                        <FaGithub className="mr-1" /> GitHub
+                      </a>
+                    )}
+                    {project.live && (
+                      <a 
+                        href={project.live} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
                               className="flex items-center text-xs sm:text-sm text-primary hover:text-secondary transition-colors"
-                            >
-                              <FaExternalLinkAlt className="mr-1" /> Live Demo
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
+                      >
+                        <FaExternalLinkAlt className="mr-1" /> Live Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
                   ))}
                 </div>
               </div>

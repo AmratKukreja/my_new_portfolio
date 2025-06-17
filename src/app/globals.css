@@ -249,6 +249,27 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
   }
   
+  /* Black headings for specific sections */
+  #skills .section-title,
+  #projects .section-title, 
+  #recommendations .section-title {
+    color: #000000 !important;
+  }
+  
+  /* White headings for specific sections */
+  #experience .section-title,
+  #education .section-title,
+  #contact .section-title {
+    color: #ffffff !important;
+  }
+  
+  /* Dark description text for sections with white backgrounds */
+  #skills .text-center p,
+  #projects .text-center p,
+  #recommendations .text-center p {
+    color: #111827 !important;
+  }
+  
   .section-subtitle {
     color: var(--secondary-color) !important;
   }
